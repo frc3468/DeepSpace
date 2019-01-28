@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
+import frc.robot.commands.LowerLift;
 
 /**
  * Add your docs here.
@@ -30,7 +31,15 @@ public class RobotLift extends Subsystem {
     motorliftUpper.setInverted(true);
 
   }
-
+  public void Lift(){
+    liftMotors.set(0.8);
+  }
+  public void LowerLift(){
+    liftMotors.set(0.5);
+  }
+  public void stop(){
+    liftMotors.set(0.0);
+  }
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.

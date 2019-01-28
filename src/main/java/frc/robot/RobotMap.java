@@ -14,15 +14,18 @@ package frc.robot;
  * floating around.
  */
 public class RobotMap {
-
+  // Controller and Buttons
   public static int xboxcontroller = 0;
+  public static int lowerliftbutton = 1;
+  public static int liftbutton = 2;
 
+  // Drivetrain Motors-------------------------
   public static int dtFrontRight = 0;
   public static int dtRearRight = 1;
-
   public static int dtmotorFrontLeft = 2;
   public static int dtmotorRearLeft = 3;
 
+  // Lift Motors-------------------------------
   public static int liftLower = 4;
   public static int liftUpper = 5;
 

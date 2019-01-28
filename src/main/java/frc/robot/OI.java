@@ -8,6 +8,10 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.Lift;
+import frc.robot.commands.LowerLift;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -16,6 +20,17 @@ import edu.wpi.first.wpilibj.XboxController;
 public class OI {
 
   public XboxController stick = new XboxController(0);
+
+  // Controller Mapped
+  public Button aButton = new JoystickButton(stick,RobotMap.lowerliftbutton);
+  public Button bButton = new JoystickButton(stick,RobotMap.liftbutton);
+
+  public OI(){
+    aButton.whileHeld(new LowerLift());
+    bButton.whileHeld(new Lift());
+  }
+
+
 
   
   //// CREATING BUTTONS
