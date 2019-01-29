@@ -11,14 +11,9 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.Robot;
 import frc.robot.RobotMap;
-import frc.robot.commands.LowerLift;
-import frc.robot.commands.RaiseLift;
 
-/**
- * Add your docs here.
- */
+
 public class Lift extends Subsystem {
 
   Victor motorLiftLower = new Victor(RobotMap.liftLower);
