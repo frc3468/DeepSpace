@@ -6,13 +6,11 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot;
-
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.LowerLift;
 import frc.robot.commands.RaiseLift;
-
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -20,20 +18,16 @@ import frc.robot.commands.RaiseLift;
  */
 public class OI {
 
-
   // Controller Mapped
   public XboxController stick = new XboxController(RobotMap.xboxcontroller);
-  public Button aButton = new JoystickButton(stick,RobotMap.lowerliftbutton);
-  public Button bButton = new JoystickButton(stick,RobotMap.liftbutton);
+  public Button aButton = new JoystickButton(stick,RobotMap.lowerLiftbutton);
+  public Button bButton = new JoystickButton(stick,RobotMap.raiseLiftbutton);
 
   public OI(){
     aButton.whileHeld(new LowerLift());
     bButton.whileHeld(new RaiseLift());
   }
 
-
-
-  
   //// CREATING BUTTONS
   // One type of button is a joystick button which is any button on a
   //// joystick.

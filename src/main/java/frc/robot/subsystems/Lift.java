@@ -21,23 +21,28 @@ import frc.robot.commands.RaiseLift;
  */
 public class Lift extends Subsystem {
 
-  Victor motorliftLower = new Victor(RobotMap.liftLower);
-  Victor motorliftUpper = new Victor(RobotMap.liftUpper);
-  SpeedControllerGroup liftMotors= new SpeedControllerGroup(motorliftLower, motorliftUpper);
+  Victor motorLiftLower = new Victor(RobotMap.liftLower);
+  Victor motorLiftUpper = new Victor(RobotMap.liftUpper);
+  SpeedControllerGroup liftMotors = new SpeedControllerGroup(motorLiftLower, motorLiftUpper);
 
 
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   public Lift() {
-    motorliftUpper.setInverted(true);
-
+    motorLiftUpper.setInverted(true);
   }
+
+  
   public void RaiseLift(){
     liftMotors.set(0.8);
   }
+  
+
   public void LowerLift(){
     liftMotors.set(0.5);
   }
+  
+
   public void stop(){
     liftMotors.set(0.0);
   }

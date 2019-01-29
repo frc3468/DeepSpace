@@ -19,13 +19,13 @@ import frc.robot.commands.Halodrive;
  */
 public class Drivetrain extends Subsystem {
 
-  Victor motordtFrontRight = new Victor(RobotMap.dtFrontRight);
-  Victor motordtRearRight = new Victor(RobotMap.dtRearRight);
-  SpeedControllerGroup rightMotors = new SpeedControllerGroup(motordtFrontRight, motordtRearRight);
+  Victor dtmotorFrontRight = new Victor(RobotMap.dtFrontRight);
+  Victor dtmotorRearRight = new Victor(RobotMap.dtRearRight);
+  SpeedControllerGroup rightMotors = new SpeedControllerGroup(dtmotorFrontRight, dtmotorRearRight);
 
-  Victor motordtFrontLeft = new Victor(RobotMap.dtmotorFrontLeft);
-  Victor motordtRearLeft = new Victor(RobotMap.dtmotorRearLeft);
-  SpeedControllerGroup leftMotors = new SpeedControllerGroup(motordtFrontLeft, motordtRearLeft);
+  Victor dtmotorFrontLeft = new Victor(RobotMap.dtmotorFrontLeft);
+  Victor dtmotorRearLeft = new Victor(RobotMap.dtmotorRearLeft);
+  SpeedControllerGroup leftMotors = new SpeedControllerGroup(dtmotorFrontLeft, dtmotorRearLeft);
 
   DifferentialDrive RobotDrive = new DifferentialDrive(leftMotors, rightMotors);
 
@@ -54,11 +54,7 @@ public class Drivetrain extends Subsystem {
 
     return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
   } 
-
-
-
-
-  }
+}
 
 
 

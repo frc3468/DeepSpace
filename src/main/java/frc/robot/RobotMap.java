@@ -19,8 +19,8 @@ public class RobotMap {
   
   // Controller and Buttons
   public static int xboxcontroller = 0;
-  public static int lowerliftbutton = 1;
-  public static int liftbutton = 2;
+  public static int lowerLiftbutton = 1;
+  public static int raiseLiftbutton = 2;
 
   // Drivetrain Motors-------------------------
   public static int dtFrontRight = 0;
