@@ -10,9 +10,9 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class Lift extends Command {
-  public Lift() {
-    requires(Robot.robotlift);
+public class RaiseLift extends Command {
+  public RaiseLift() {
+    requires(Robot.lift);
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -26,7 +26,7 @@ public class Lift extends Command {
   @Override
   protected void execute() {
 
-    Robot.robotlift.Lift();
+    Robot.lift.RaiseLift();
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -44,6 +44,6 @@ public class Lift extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.robotlift.stop();
+    Robot.lift.stop();
   }
 }

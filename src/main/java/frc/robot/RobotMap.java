@@ -7,6 +7,8 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.XboxController;
+
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking
@@ -14,6 +16,7 @@ package frc.robot;
  * floating around.
  */
 public class RobotMap {
+  
   // Controller and Buttons
   public static int xboxcontroller = 0;
   public static int lowerliftbutton = 1;

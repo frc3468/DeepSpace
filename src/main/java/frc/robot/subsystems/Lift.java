@@ -14,11 +14,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.commands.LowerLift;
+import frc.robot.commands.RaiseLift;
 
 /**
  * Add your docs here.
  */
-public class RobotLift extends Subsystem {
+public class Lift extends Subsystem {
 
   Victor motorliftLower = new Victor(RobotMap.liftLower);
   Victor motorliftUpper = new Victor(RobotMap.liftUpper);
@@ -27,11 +28,11 @@ public class RobotLift extends Subsystem {
 
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  public RobotLift() {
+  public Lift() {
     motorliftUpper.setInverted(true);
 
   }
-  public void Lift(){
+  public void RaiseLift(){
     liftMotors.set(0.8);
   }
   public void LowerLift(){
