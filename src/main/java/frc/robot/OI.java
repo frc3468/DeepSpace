@@ -22,7 +22,7 @@ public class OI {
 
 
   // Controller Mapped
-  public XboxController stick = new XboxController(0);
+  public XboxController stick = new XboxController(RobotMap.xboxcontroller);
   public Button aButton = new JoystickButton(stick,RobotMap.lowerliftbutton);
   public Button bButton = new JoystickButton(stick,RobotMap.liftbutton);
 
