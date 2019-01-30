@@ -16,8 +16,8 @@ import frc.robot.RobotMap;
 
 public class Lift extends Subsystem {
 
-  Victor motorLiftLower = new Victor(RobotMap.liftLower);
-  Victor motorLiftUpper = new Victor(RobotMap.liftUpper);
+  Victor motorLiftLower = new Victor(RobotMap.liftmotorLower);
+  Victor motorLiftUpper = new Victor(RobotMap.liftmotorUpper);
   SpeedControllerGroup liftMotors = new SpeedControllerGroup(motorLiftLower, motorLiftUpper);
 
 
@@ -28,12 +28,12 @@ public class Lift extends Subsystem {
   }
 
   
-  public void RaiseLift(){
+  public void raiseLift(){
     liftMotors.set(0.8);
   }
   
 
-  public void LowerLift(){
+  public void lowerLift(){
     liftMotors.set(0.5);
   }
   

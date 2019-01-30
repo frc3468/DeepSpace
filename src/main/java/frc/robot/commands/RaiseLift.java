@@ -26,7 +26,7 @@ public class RaiseLift extends Command {
   @Override
   protected void execute() {
 
-    Robot.lift.RaiseLift();
+    Robot.lift.raiseLift();
   }
 
   // Make this return true when this Command no longer needs to run execute()

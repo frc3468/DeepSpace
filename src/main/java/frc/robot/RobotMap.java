@@ -7,7 +7,6 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.XboxController;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -23,14 +22,14 @@ public class RobotMap {
   public static int raiseLiftbutton = 2;
 
   // Drivetrain Motors-------------------------
-  public static int dtFrontRight = 0;
-  public static int dtRearRight = 1;
+  public static int dtmotorFrontRight = 0;
+  public static int dtmotorRearRight = 1;
   public static int dtmotorFrontLeft = 2;
   public static int dtmotorRearLeft = 3;
 
   // Lift Motors-------------------------------
-  public static int liftLower = 4;
-  public static int liftUpper = 5;
+  public static int liftmotorLower = 4;
+  public static int liftmotorUpper = 5;
 
 
 
