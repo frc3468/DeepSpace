@@ -7,43 +7,41 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.command.PIDSubsystem;
 
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import edu.wpi.first.wpilibj.Victor;
-import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.RobotMap;
-
-
-public class Lift extends Subsystem {
-
-  Victor liftmotorLower = new Victor(RobotMap.liftmotorLower);
-  Victor liftmotorUpper = new Victor(RobotMap.liftmotorUpper);
-  SpeedControllerGroup liftMotors = new SpeedControllerGroup(liftmotorLower, liftmotorUpper);
-
-
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
+/**
+ * Add your docs here.
+ */
+public class Lift extends PIDSubsystem {
+  /**
+   * Add your docs here.
+   */
   public Lift() {
-    liftmotorUpper.setInverted(true);
+    // Intert a subsystem name and PID values here
+    super("SubsystemName", 1, 2, 3);
+    // Use these to get going:
+    // setSetpoint() - Sets where the PID controller should move the system
+    // to
+    // enable() - Enables the PID controller.
   }
 
-  
-  public void raiseLift(){
-    liftMotors.set(0.8);
-  }
-  
-
-  public void lowerLift(){
-    liftMotors.set(0.5);
-  }
-  
-
-  public void stop(){
-    liftMotors.set(0.0);
-  }
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
+  }
+
+  @Override
+  protected double returnPIDInput() {
+    // Return your input value for the PID loop
+    // e.g. a sensor, like a potentiometer:
+    // yourPot.getAverageVoltage() / kYourMaxVoltage;
+    return 0.0;
+  }
+
+  @Override
+  protected void usePIDOutput(double output) {
+    // Use output to drive your system, like a motor
+    // e.g. yourMotor.set(output);
   }
 }
