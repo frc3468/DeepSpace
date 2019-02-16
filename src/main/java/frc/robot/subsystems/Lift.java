@@ -8,23 +8,36 @@
 package frc.robot.subsystems;
 
 
+import edu.wpi.first.wpilibj.AnalogPotentiometer;
+import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
 
-public class Lift extends Subsystem {
+public class Lift extends Subsystem{
 
-  Victor liftmotorLower = new Victor(RobotMap.liftmotorLower);
-  Victor liftmotorUpper = new Victor(RobotMap.liftmotorUpper);
-  SpeedControllerGroup liftMotors = new SpeedControllerGroup(liftmotorLower, liftmotorUpper);
+  Victor liftmotorLeft = new Victor(RobotMap.liftmotorLeft);
+  Victor liftmotorRight = new Victor(RobotMap.liftmotorRight);
+  SpeedControllerGroup liftMotors = new SpeedControllerGroup(liftmotorLeft, liftmotorRight);
+
+  AnalogPotentiometer liftPotentiometerLeft = new AnalogPotentiometer(RobotMap.liftPotentiometerLeft);
+  AnalogPotentiometer liftPotentiometerRight = new AnalogPotentiometer(RobotMap.liftPotentiometerRight);
+
+  PIDController pidLoopLeft = new PIDController(0, 0, 0, liftPotentiometerLeft, liftmotorLeft);
+  PIDController pidLoopRight = new PIDController(0, 0, 0, liftPotentiometerRight, liftmotorRight);
+
+  
+
+  
+  
+  
 
 
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   public Lift() {
-    liftmotorUpper.setInverted(true);
   }
 
   
