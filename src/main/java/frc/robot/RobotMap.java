@@ -18,8 +18,10 @@ public class RobotMap {
   
   // Controller and Buttons
   public static int xboxcontroller = 0;
-  public static int lowerLiftbutton = 1;
-  public static int raiseLiftbutton = 2;
+  public static int lowestLiftButton = 1;
+  public static int midLiftOneButton = 2;
+  public static int midLiftTwoButton = 3;
+  public static int highestLiftButton = 4;
 
   // Drivetrain Motors-------------------------
   public static int dtmotorFrontRight = 0;
@@ -34,6 +36,13 @@ public class RobotMap {
   // Lift Potentiometers-----------------------
   public static int liftPotentiometerLeft = 6;
   public static int liftPotentiometerRight = 7;
+
+  // Variables for Lift Commands---------------
+  public static double lowestSetPoint = 0.1;
+  public static double midSetPointOne = 0.3;
+  public static double midSetPointTwo = 0.5;
+  public static double highestSetPoint = 0.7;
+
 
 
 

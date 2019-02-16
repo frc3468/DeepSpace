@@ -6,11 +6,15 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.LowerLift;
-import frc.robot.commands.RaiseLift;
+import frc.robot.commands.HighestLift;
+import frc.robot.commands.LowestLift;
+import frc.robot.commands.MidLiftOne;
+import frc.robot.commands.MidLiftTwo;
+
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -20,12 +24,16 @@ public class OI {
 
   // Controller Mapped
   public XboxController stick = new XboxController(RobotMap.xboxcontroller);
-  public Button aButton = new JoystickButton(stick,RobotMap.lowerLiftbutton);
-  public Button bButton = new JoystickButton(stick,RobotMap.raiseLiftbutton);
+  public Button aButton = new JoystickButton(stick,RobotMap.lowestLiftButton);
+  public Button bButton = new JoystickButton(stick,RobotMap.midLiftOneButton);
+  public Button xButton = new JoystickButton(stick,RobotMap.midLiftTwoButton);
+  public Button yButton = new JoystickButton(stick,RobotMap.highestLiftButton);
 
   public OI(){
-    aButton.whileHeld(new LowerLift());
-    bButton.whileHeld(new RaiseLift());
+    bButton.whenPressed(new MidLiftOne());
+    aButton.whenPressed(new LowestLift());
+    xButton.whenPressed(new MidLiftTwo());
+    yButton.whenPressed(new HighestLift());
   }
 
   //// CREATING BUTTONS
