@@ -28,8 +28,12 @@ public class RobotMap {
   public static int dtmotorRearLeft = 3;
 
   // Lift Motors-------------------------------
-  public static int liftmotorLower = 4;
-  public static int liftmotorUpper = 5;
+  public static int liftMotorLeft = 4;
+  public static int liftMotorRight = 5;
+
+  // Lift Potentiometers-----------------------
+  public static int liftPotentiometerLeft = 6;
+  public static int liftPotentiometerRight = 7;
 
 
 

@@ -7,18 +7,32 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.AnalogPotentiometer;
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
+import frc.robot.RobotMap;
 
 /**
  * Add your docs here.
  */
 public class Lift extends PIDSubsystem {
-  /**
-   * Add your docs here.
-   */
+
+  //Lift Motors
+  Victor liftMotorLeft = new Victor(RobotMap.liftMotorLeft);
+  Victor liftMotorRight = new Victor(RobotMap.liftMotorRight);
+  SpeedControllerGroup liftMotors = new SpeedControllerGroup(liftMotorLeft, liftMotorRight);
+
+  //Lift Potentiometers
+  AnalogPotentiometer liftPotentiometerLeft = new AnalogPotentiometer(RobotMap.liftPotentiometerLeft);
+  AnalogPotentiometer liftPotentiometerRight = new AnalogPotentiometer(RobotMap.liftPotentiometerRight);
+  
+  
   public Lift() {
     // Intert a subsystem name and PID values here
-    super("SubsystemName", 1, 2, 3);
+    super("Lift", 1, 2, 3);
+    setSetpoint(0.0);
+    enable();
     // Use these to get going:
     // setSetpoint() - Sets where the PID controller should move the system
     // to
@@ -33,6 +47,9 @@ public class Lift extends PIDSubsystem {
 
   @Override
   protected double returnPIDInput() {
+
+  liftPotentiometerLeft.get();
+  liftPotentiometerRight.get();
     // Return your input value for the PID loop
     // e.g. a sensor, like a potentiometer:
     // yourPot.getAverageVoltage() / kYourMaxVoltage;
