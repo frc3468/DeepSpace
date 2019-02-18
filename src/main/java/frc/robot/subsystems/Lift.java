@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.commands.LowestLift;
+import frc.robot.commands.SyncSlave;
 
 
 public class Lift extends Subsystem{
@@ -42,37 +43,34 @@ public class Lift extends Subsystem{
   // here. Call these from Commands.
   public Lift() {
    pidLoopLeft.setSetpoint(RobotMap.lowestSetPoint);
-   pidLoopRight.setSetpoint(RobotMap.lowestSetPoint);
+   pidLoopRight.setSetpoint(pidLoopLeft.get());
   }
 
-  public void LowestLift(){
+  public void lowestLift(){
     pidLoopLeft.setSetpoint(RobotMap.lowestSetPoint);
-    pidLoopRight.setSetpoint(RobotMap.lowestSetPoint);
+    syncSlave();
 
   }
 
-  public void MidLiftOne(){
+  public void midLiftOne(){
     pidLoopLeft.setSetpoint(RobotMap.midSetPointOne);
-    pidLoopRight.setSetpoint(RobotMap.midSetPointOne);
+    syncSlave();
   }
 
-  public void MidLiftTwo(){
+  public void midLiftTwo(){
     pidLoopLeft.setSetpoint(RobotMap.midSetPointTwo);
-    pidLoopRight.setSetpoint(RobotMap.midSetPointTwo);
+    syncSlave();
   }
 
-  public void HighestLift(){
+  public void highestLift(){
     pidLoopLeft.setSetpoint(RobotMap.highestSetPoint);
-    pidLoopRight.setSetpoint(RobotMap.highestSetPoint);
+    syncSlave();
   }
-  public void raiseLift(){
-    liftMotors.set(0.8);
-  }
-  
 
-  public void lowerLift(){
-    liftMotors.set(0.5);
+  public void syncSlave(){
+    pidLoopRight.setSetpoint(pidLoopLeft.get());
   }
+
   
 
   public void stop(){
@@ -80,6 +78,7 @@ public class Lift extends Subsystem{
   }
   @Override
   public void initDefaultCommand() {
+    setDefaultCommand(new SyncSlave());
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }
