@@ -7,14 +7,12 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 
-public class Halodrive extends Command {
-  public Halodrive() {
-    requires(Robot.drivetrain); 
+public class WristStraight extends Command {
+  public WristStraight() {
+    requires(Robot.wrist);
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -22,15 +20,12 @@ public class Halodrive extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    Robot.wrist.wristStraight();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.drivetrain.Halodrive(Robot.m_oi.stick.getY(Hand.kLeft), Robot.m_oi.stick.getX(Hand.kRight));
-    SmartDashboard.putNumber("LeftPot", Robot.lift.setSmartDashboardLeft());
-    SmartDashboard.putNumber("RightPot", Robot.lift.setSmartDashboardRight());
-
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -42,14 +37,11 @@ public class Halodrive extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    interrupted();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.drivetrain.Halodrive(0, 0);
-    
   }
 }

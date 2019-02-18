@@ -71,6 +71,13 @@ public class Lift extends Subsystem{
     pidLoopRight.setSetpoint(pidLoopLeft.get());
   }
 
+  public double setSmartDashboardLeft(){
+   return liftPotentiometerLeft.get();
+  }
+  public double setSmartDashboardRight(){
+    return liftPotentiometerRight.get();
+  }
+
   
 
   public void stop(){

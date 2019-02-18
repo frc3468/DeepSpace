@@ -16,12 +16,13 @@ package frc.robot;
  */
 public class RobotMap {
   
-  // Controller and Buttons
+  // Controller and Buttons--------------------
   public static int xboxcontroller = 0;
   public static int lowestLiftButton = 1;
   public static int midLiftOneButton = 2;
-  public static int midLiftTwoButton = 3;
-  public static int highestLiftButton = 4;
+  public static int midLiftTwoButton = 0;
+  public static int highestLiftButton = 3;
+  
 
   // Drivetrain Motors-------------------------
   public static int dtmotorFrontRight = 0;
@@ -33,9 +34,15 @@ public class RobotMap {
   public static int liftmotorLeft = 4;
   public static int liftmotorRight = 5;
 
+  // Wrist Motor-------------------------------
+  public static int wristMotor = 6;
+
+  // Wrist Counter-----------------------------
+  public static int wristCounter = 0;
+
   // Lift Potentiometers-----------------------
-  public static int liftPotentiometerLeft = 6;
-  public static int liftPotentiometerRight = 7;
+  public static int liftPotentiometerLeft = 0;
+  public static int liftPotentiometerRight = 1;
 
   // Variables for Lift Commands---------------
   public static double lowestSetPoint = 0.1;

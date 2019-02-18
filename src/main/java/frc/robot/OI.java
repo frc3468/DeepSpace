@@ -28,6 +28,9 @@ public class OI {
   public Button bButton = new JoystickButton(stick,RobotMap.midLiftOneButton);
   public Button xButton = new JoystickButton(stick,RobotMap.midLiftTwoButton);
   public Button yButton = new JoystickButton(stick,RobotMap.highestLiftButton);
+  // public Button dPadUp = new JoystickButton(stick,RobotMap.wristUpButton);
+  // public Button dPadLeft = new JoystickButton(stick,RobotMap.wristStraightButton);
+  // public Button dPadDown = new JoystickButton(stick,RobotMap.wristDownButton);
 
   public OI(){
     bButton.whenPressed(new MidLiftOne());
