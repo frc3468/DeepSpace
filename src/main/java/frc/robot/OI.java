@@ -24,7 +24,6 @@ public class OI {
 
   // Controller Mapped
   public XboxController stick = new XboxController(RobotMap.xboxcontroller);
-<<<<<<< HEAD
   public Button aButton = new JoystickButton(stick,RobotMap.lowestLiftButton);
   public Button bButton = new JoystickButton(stick,RobotMap.midLiftOneButton);
   public Button xButton = new JoystickButton(stick,RobotMap.midLiftTwoButton);
@@ -32,14 +31,9 @@ public class OI {
   // public Button dPadUp = new JoystickButton(stick,RobotMap.wristUpButton);
   // public Button dPadLeft = new JoystickButton(stick,RobotMap.wristStraightButton);
   // public Button dPadDown = new JoystickButton(stick,RobotMap.wristDownButton);
-=======
-  public Button aButton = new JoystickButton(stick, RobotMap.lowestLiftButton);
-  public Button bButton = new JoystickButton(stick, RobotMap.midLiftOneButton);
-  public Button xButton = new JoystickButton(stick, RobotMap.midLiftTwoButton);
-  public Button yButton = new JoystickButton(stick, RobotMap.highestLiftButton);
   public Button rightTrigger = new JoystickButton(stick, RobotMap.clawOpenButton);
   public Button leftTrigger = new JoystickButton(stick, RobotMap.clawCloseButton);
->>>>>>> d50bdb22f9ac9d3e3347b3eee458c8cecf4e466e
+
 
   public OI() {
     bButton.whenPressed(new MidLiftOne());

@@ -46,10 +46,10 @@ public class RobotMap {
   public static int liftPotentiometerRight = 1;
 
   // Variables for Lift Commands---------------
-  public static double lowestSetPoint = 0.1;
-  public static double midSetPointOne = 0.3;
-  public static double midSetPointTwo = 0.5;
-  public static double highestSetPoint = 0.7;
+  public static double lowestSetPoint = 0.099;
+  public static double midSetPointOne = 0.289;
+  public static double midSetPointTwo = 0.522;
+  public static double highestSetPoint = 0.755;
 
   // Servo Motor
   public static int clawServo = 7;

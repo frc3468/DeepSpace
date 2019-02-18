@@ -25,10 +25,10 @@ public class Lift extends Subsystem{
   SpeedControllerGroup liftMotors = new SpeedControllerGroup(liftmotorLeft, liftmotorRight);
 
   AnalogPotentiometer liftPotentiometerLeft = new AnalogPotentiometer(RobotMap.liftPotentiometerLeft);
-  AnalogPotentiometer liftPotentiometerRight = new AnalogPotentiometer(RobotMap.liftPotentiometerRight);
+  AnalogPotentiometer liftPotentiometerRight = new AnalogPotentiometer(RobotMap.liftPotentiometerRight, 1.0, 0.022);
 
-  PIDController pidLoopLeft = new PIDController(5, 3, 0, liftPotentiometerLeft, liftmotorLeft);
-  PIDController pidLoopRight = new PIDController(5, 3, 0, liftPotentiometerRight, liftmotorRight);
+  PIDController pidLoopLeft = new PIDController(5, 3, 0, liftPotentiometerLeft, this::speedSetterLeft);
+  PIDController pidLoopRight = new PIDController(5, 3, 0, liftPotentiometerRight, this::speedSetterRight);
 
 
 
@@ -42,8 +42,10 @@ public class Lift extends Subsystem{
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   public Lift() {
-   pidLoopLeft.setSetpoint(RobotMap.lowestSetPoint);
-   pidLoopRight.setSetpoint(pidLoopLeft.get());
+    pidLoopLeft.setSetpoint(RobotMap.lowestSetPoint);
+    pidLoopRight.setSetpoint(pidLoopLeft.get());
+    pidLoopLeft.enable();
+    pidLoopRight.enable();
   }
 
   public void lowestLift(){
@@ -83,6 +85,29 @@ public class Lift extends Subsystem{
   public void stop(){
     liftMotors.set(0.0);
   }
+
+  private void speedSetterLeft(double output){
+    if (output > 0.6) {
+      liftmotorLeft.set(0.6);
+    } else if (output < -0.6) {
+      liftmotorLeft.set(-0.6);
+    }
+    else {
+      liftmotorLeft.set(output);
+    }
+  }
+
+  private void speedSetterRight(double output){
+    if (output > 0.6) {
+      liftmotorRight.set(0.6);
+    } else if (output < -0.6){
+      liftmotorRight.set(-0.6);
+    }
+    else{
+      liftmotorRight.set(output);
+    }
+  }
+
   @Override
   public void initDefaultCommand() {
     setDefaultCommand(new SyncSlave());
