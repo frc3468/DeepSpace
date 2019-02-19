@@ -120,6 +120,10 @@ public class Lift extends Subsystem{
     syncSlave();
   }
 
+  double liftArray[
+
+  ];
+
   @Override
   public void initDefaultCommand() {
     // setDefaultCommand(new SyncSlave());

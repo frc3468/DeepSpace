@@ -12,6 +12,7 @@ import frc.robot.Robot;
 
 public class ClawClose extends Command {
   public ClawClose() {
+    requires(Robot.claw);
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }

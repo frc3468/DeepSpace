@@ -22,8 +22,8 @@ public class RobotMap {
   public static int midLiftOneButton = 1;
   public static int midLiftTwoButton = 3;
   public static int highestLiftButton = 4;
-  public static int clawCloseButton = 6;
-  public static int clawOpenButton = 7;
+  public static int clawCloseButton = 5;
+  public static int clawOpenButton = 6;
 
   // Drivetrain Motors-------------------------
   public static int dtmotorFrontRight = 0;
