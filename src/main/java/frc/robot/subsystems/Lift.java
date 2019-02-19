@@ -101,8 +101,10 @@ public class Lift extends Subsystem{
       liftmotorLeft.set(-0.6);
     }
     else {
-      if(Math.abs(pidLoopLeft.getSetpoint()-liftPotentiometerLeft.get()) < RobotMap.masterTolerance)
-      liftmotorLeft.set(output);
+      if(Math.abs(pidLoopLeft.getError()) < RobotMap.masterTolerance) {
+        liftmotorLeft.set(0.0);
+      } else {
+        liftmotorLeft.set(output);
     }
   }
 
@@ -113,7 +115,9 @@ public class Lift extends Subsystem{
       liftmotorRight.set(-0.6);
     }
     else{
-      if(Math.abs(pidLoopRight.getSetpoint()-liftPotentiometerRight.get()) < RobotMap.slaveTolerance) {
+      if(Math.abs(pidLoopRight.getError()) < RobotMap.slaveTolerance) {
+        liftmotorRight.set(0.0);
+      } else {
         liftmotorRight.set(output);
       }
     }
