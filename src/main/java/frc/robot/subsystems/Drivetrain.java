@@ -31,8 +31,8 @@ public class Drivetrain extends Subsystem {
 
 
   public void Halodrive(double magnitude, double rotation) {
-    magnitude = map(magnitude, -1.0, 1.0, -0.4, 0.4);
-    rotation = map(rotation, -1.0, 1.0, -0.3, 0.4);
+    magnitude = map(magnitude, -1.0, 1.0, -0.5, 0.5);
+    rotation = map(rotation, -1.0, 1.0, -0.5, 0.5);
     
     RobotDrive.arcadeDrive(magnitude, rotation);
 

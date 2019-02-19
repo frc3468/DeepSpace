@@ -27,7 +27,7 @@ public class Halodrive extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.drivetrain.Halodrive(Robot.m_oi.stick.getRawAxis(1), Robot.m_oi.stick.getRawAxis(2));
+    Robot.drivetrain.Halodrive(Robot.m_oi.stick.getRawAxis(1), Robot.m_oi.stick.getRawAxis(4));
     SmartDashboard.putNumber("LeftPot", Robot.lift.setSmartDashboardLeft());
     SmartDashboard.putNumber("RightPot", Robot.lift.setSmartDashboardRight());
     Robot.lift.smartDashboardOutput();

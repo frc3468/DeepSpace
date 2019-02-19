@@ -19,14 +19,13 @@ public class ClawOpen extends Command {
 
   // Called just before this Command runs the first time
   @Override
-  protected void initialize() {
-    Robot.claw.clawServoOpen();  
+  protected void initialize() {  
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    
+    Robot.claw.clawServoOpen();
   }
 
   // Make this return true when this Command no longer needs to run execute()

@@ -10,6 +10,8 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.ClawClose;
+import frc.robot.commands.ClawOpen;
 import frc.robot.commands.HighestLift;
 import frc.robot.commands.LowestLift;
 import frc.robot.commands.MidLiftOne;
@@ -33,6 +35,7 @@ public class OI {
   // public Button dPadDown = new JoystickButton(stick,RobotMap.wristDownButton);
   public Button rightTrigger = new JoystickButton(stick, RobotMap.clawOpenButton);
   public Button leftTrigger = new JoystickButton(stick, RobotMap.clawCloseButton);
+  
 
 
   public OI() {
@@ -40,6 +43,8 @@ public class OI {
     aButton.whenPressed(new LowestLift());
     xButton.whenPressed(new MidLiftTwo());
     yButton.whenPressed(new HighestLift());
+    rightTrigger.whenPressed(new ClawOpen());
+    leftTrigger.whenPressed(new ClawClose());
   }
 
   //// CREATING BUTTONS

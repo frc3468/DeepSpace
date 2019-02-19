@@ -105,6 +105,7 @@ public class Lift extends Subsystem{
         liftmotorLeft.set(0.0);
       } else {
         liftmotorLeft.set(output);
+      }
     }
   }
 

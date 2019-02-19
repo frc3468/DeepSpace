@@ -23,12 +23,12 @@ public class Claw extends Subsystem {
   // here. Call these from Commands.
 
   public void clawServoOpen() {
-    clawServo.set(0.2);
+    clawServo.set(0.3);
     
   }
 
   public void clawServoClose() {
-    clawServo.set(.9);
+    clawServo.set(.8);
   }
   
   @Override

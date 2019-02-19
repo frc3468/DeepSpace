@@ -51,7 +51,7 @@ public class RobotMap {
   public static double midSetPointTwo = 60.0;
   public static double highestSetPoint = 88.0;
   public static double masterTolerance = 0.75; // Tolerance in "inches"
-  public static double slaveTolerance = 0.50; // Tolerance in "inches"
+  public static double slaveTolerance = 0.20; // Tolerance in "inches"
 
   // Servo Motor
   public static int clawServo = 7;
