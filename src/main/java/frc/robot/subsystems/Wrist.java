@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import frc.robot.RobotMap;
+import frc.robot.commands.WristPOV;
 
 /**
  * Add your docs here.
@@ -33,10 +34,23 @@ public class Wrist extends PIDSubsystem {
     // enable() - Enables the PID controller.
   }
 
+  public void up() {
+    wristMotor.set(-0.6);
+  }
+
+  public void down() {
+    wristMotor.set(0.6);
+  }
+
+  public void stop() {
+    wristMotor.set(0.0);
+  }
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
+    setDefaultCommand(new WristPOV());
   }
 
   public void wristUp(){

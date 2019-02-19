@@ -7,14 +7,12 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 
-public class Halodrive extends Command {
-  public Halodrive() {
-    requires(Robot.drivetrain); 
+public class WristPOV extends Command {
+  public WristPOV() {
+    requires(Robot.wrist);
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -27,13 +25,13 @@ public class Halodrive extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.drivetrain.Halodrive(Robot.m_oi.stick.getRawAxis(1), Robot.m_oi.stick.getRawAxis(2));
-    SmartDashboard.putNumber("LeftPot", Robot.lift.setSmartDashboardLeft());
-    SmartDashboard.putNumber("RightPot", Robot.lift.setSmartDashboardRight());
-    Robot.lift.smartDashboardOutput();
-    Robot.lift.smartDashBoardOutputRight();
-
-
+    if(Robot.m_oi.stick.getPOV() == 0) {
+      Robot.wrist.up();
+    } else if (Robot.m_oi.stick.getPOV() == 180) {
+      Robot.wrist.down();
+    } else {
+      Robot.wrist.stop();
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -45,14 +43,11 @@ public class Halodrive extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    interrupted();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.drivetrain.Halodrive(0, 0);
-    
   }
 }

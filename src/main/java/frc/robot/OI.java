@@ -23,7 +23,7 @@ import frc.robot.commands.MidLiftTwo;
 public class OI {
 
   // Controller Mapped
-  public XboxController stick = new XboxController(RobotMap.xboxcontroller);
+  public Joystick stick = new Joystick(RobotMap.xboxcontroller);
   public Button aButton = new JoystickButton(stick,RobotMap.lowestLiftButton);
   public Button bButton = new JoystickButton(stick,RobotMap.midLiftOneButton);
   public Button xButton = new JoystickButton(stick,RobotMap.midLiftTwoButton);

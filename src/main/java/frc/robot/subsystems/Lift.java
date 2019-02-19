@@ -13,6 +13,8 @@ import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.commands.LowestLift;
 import frc.robot.commands.SyncSlave;
@@ -22,28 +24,25 @@ public class Lift extends Subsystem{
 
   Victor liftmotorLeft = new Victor(RobotMap.liftmotorLeft);
   Victor liftmotorRight = new Victor(RobotMap.liftmotorRight);
-  SpeedControllerGroup liftMotors = new SpeedControllerGroup(liftmotorLeft, liftmotorRight);
 
-  AnalogPotentiometer liftPotentiometerLeft = new AnalogPotentiometer(RobotMap.liftPotentiometerLeft);
-  AnalogPotentiometer liftPotentiometerRight = new AnalogPotentiometer(RobotMap.liftPotentiometerRight, 1.0, 0.022);
+  AnalogPotentiometer liftPotentiometerLeft = new AnalogPotentiometer(RobotMap.liftPotentiometerLeft, 116.5);
+  AnalogPotentiometer liftPotentiometerRight = new AnalogPotentiometer(RobotMap.liftPotentiometerRight, 116.5, 2.0);
 
-  PIDController pidLoopLeft = new PIDController(5, 3, 0, liftPotentiometerLeft, this::speedSetterLeft);
-  PIDController pidLoopRight = new PIDController(5, 3, 0, liftPotentiometerRight, this::speedSetterRight);
-
-
-
-  
-
-  
-  
-  
-
+  PIDController pidLoopLeft = new PIDController(1, 0, 0, liftPotentiometerLeft, this::speedSetterLeft);
+  PIDController pidLoopRight = new PIDController(1, 0, 0, liftPotentiometerRight, this::speedSetterRight, 0.02);
 
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   public Lift() {
+    LiveWindow.addActuator("LiftMaster", "motor", liftmotorLeft);
+    LiveWindow.addSensor("LiftMaster", "pot", liftPotentiometerLeft);
+    LiveWindow.addActuator("LiftMaster", "PID Controller", pidLoopLeft);
+    LiveWindow.addActuator("LiftSlave", "motor", liftmotorRight);
+    LiveWindow.addSensor("LiftSlave", "pot", liftPotentiometerRight);
+    LiveWindow.addActuator("LiftSlave", "PID Controller", pidLoopRight);
+
     pidLoopLeft.setSetpoint(RobotMap.lowestSetPoint);
-    pidLoopRight.setSetpoint(pidLoopLeft.get());
+    pidLoopRight.setSetpoint(liftPotentiometerLeft.get());
     pidLoopLeft.enable();
     pidLoopRight.enable();
   }
@@ -70,7 +69,7 @@ public class Lift extends Subsystem{
   }
 
   public void syncSlave(){
-    pidLoopRight.setSetpoint(pidLoopLeft.get());
+    pidLoopRight.setSetpoint(liftPotentiometerLeft.get());
   }
 
   public double setSmartDashboardLeft(){
@@ -80,10 +79,19 @@ public class Lift extends Subsystem{
     return liftPotentiometerRight.get();
   }
 
+  public void smartDashboardOutput(){
+    SmartDashboard.putData("Left", pidLoopLeft);
+  }
+
+  public void smartDashBoardOutputRight(){
+    SmartDashboard.putData("Right", pidLoopRight);
+  }
+
   
 
   public void stop(){
-    liftMotors.set(0.0);
+    liftmotorLeft.set(0.0);
+    liftmotorRight.set(0.0);
   }
 
   private void speedSetterLeft(double output){
@@ -93,6 +101,7 @@ public class Lift extends Subsystem{
       liftmotorLeft.set(-0.6);
     }
     else {
+      if(Math.abs(pidLoopLeft.getSetpoint()-liftPotentiometerLeft.get()) < RobotMap.masterTolerance)
       liftmotorLeft.set(output);
     }
   }
@@ -104,13 +113,16 @@ public class Lift extends Subsystem{
       liftmotorRight.set(-0.6);
     }
     else{
-      liftmotorRight.set(output);
+      if(Math.abs(pidLoopRight.getSetpoint()-liftPotentiometerRight.get()) < RobotMap.slaveTolerance) {
+        liftmotorRight.set(output);
+      }
     }
+    syncSlave();
   }
 
   @Override
   public void initDefaultCommand() {
-    setDefaultCommand(new SyncSlave());
+    // setDefaultCommand(new SyncSlave());
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }

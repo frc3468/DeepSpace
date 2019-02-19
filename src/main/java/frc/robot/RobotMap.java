@@ -18,10 +18,10 @@ public class RobotMap {
   
   // Controller and Buttons--------------------
   public static int xboxcontroller = 0;
-  public static int lowestLiftButton = 1;
-  public static int midLiftOneButton = 2;
-  public static int midLiftTwoButton = 0;
-  public static int highestLiftButton = 3;
+  public static int lowestLiftButton = 2;
+  public static int midLiftOneButton = 1;
+  public static int midLiftTwoButton = 3;
+  public static int highestLiftButton = 4;
   public static int clawCloseButton = 6;
   public static int clawOpenButton = 7;
 
@@ -46,10 +46,12 @@ public class RobotMap {
   public static int liftPotentiometerRight = 1;
 
   // Variables for Lift Commands---------------
-  public static double lowestSetPoint = 0.099;
-  public static double midSetPointOne = 0.289;
-  public static double midSetPointTwo = 0.522;
-  public static double highestSetPoint = 0.755;
+  public static double lowestSetPoint = 12.0;
+  public static double midSetPointOne = 34.0;
+  public static double midSetPointTwo = 60.0;
+  public static double highestSetPoint = 88.0;
+  public static double masterTolerance = 0.75; // Tolerance in "inches"
+  public static double slaveTolerance = 0.50; // Tolerance in "inches"
 
   // Servo Motor
   public static int clawServo = 7;
