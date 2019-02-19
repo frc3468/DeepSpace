@@ -107,6 +107,7 @@ public class Lift extends Subsystem{
         liftmotorLeft.set(output);
       }
     }
+   }
   }
 
   private void speedSetterRight(double output){

@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.subsystems.Camera;
 import frc.robot.subsystems.Claw;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.ExampleSubsystem;
@@ -32,6 +33,7 @@ public class Robot extends TimedRobot {
   public static final Lift lift = new Lift();
   public static final Wrist wrist = new Wrist();
   public static final Claw claw = new Claw();
+  public static final Camera camera = new Camera();
   public static OI m_oi;
 
   Command m_autonomousCommand;
