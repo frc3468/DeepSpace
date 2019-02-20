@@ -26,11 +26,12 @@ public class Lift extends Subsystem{
   Victor liftmotorRight = new Victor(RobotMap.liftmotorRight);
 
   AnalogPotentiometer liftPotentiometerLeft = new AnalogPotentiometer(RobotMap.liftPotentiometerLeft, 116.5);
-  AnalogPotentiometer liftPotentiometerRight = new AnalogPotentiometer(RobotMap.liftPotentiometerRight, 116.5, 2.0);
+  AnalogPotentiometer liftPotentiometerRight = new AnalogPotentiometer(RobotMap.liftPotentiometerRight, 116.5, 3.25);
 
   PIDController pidLoopLeft = new PIDController(1, 0, 0, liftPotentiometerLeft, this::speedSetterLeft);
   PIDController pidLoopRight = new PIDController(1, 0, 0, liftPotentiometerRight, this::speedSetterRight, 0.02);
 
+  int lastIndex = 0;
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   public Lift() {
@@ -41,11 +42,19 @@ public class Lift extends Subsystem{
     LiveWindow.addSensor("LiftSlave", "pot", liftPotentiometerRight);
     LiveWindow.addActuator("LiftSlave", "PID Controller", pidLoopRight);
 
-    pidLoopLeft.setSetpoint(RobotMap.lowestSetPoint);
+    pidLoopLeft.setSetpoint(liftPotentiometerLeft.get());
     pidLoopRight.setSetpoint(liftPotentiometerLeft.get());
     pidLoopLeft.enable();
     pidLoopRight.enable();
   }
+
+  // public void raiseLift(){
+  //   pidLoopLeft.setSetpoint(pidLoopLeft.getSetpoint() + 2);
+  // }
+
+  // public void lowerLift(){
+  //   pidLoopLeft.setSetpoint(pidLoopLeft.getSetpoint() - 2);
+  // }
 
   public void lowestLift(){
     pidLoopLeft.setSetpoint(RobotMap.lowestSetPoint);
@@ -108,7 +117,7 @@ public class Lift extends Subsystem{
       }
     }
    }
-  }
+  
 
   private void speedSetterRight(double output){
     if (output > 0.6) {
@@ -126,9 +135,25 @@ public class Lift extends Subsystem{
     syncSlave();
   }
 
-  double liftArray[
+  public int incramentIndex(){
+    if (lastIndex < liftArray.length - 1) {
+      lastIndex++;
+    }
+    return lastIndex;
+  }
 
-  ];
+  public int decramentIndex(){
+    if (lastIndex > 0){
+      lastIndex--;
+    }
+    return lastIndex;
+  }
+
+  public void setPidLoop(){
+    pidLoopLeft.setSetpoint(liftArray[lastIndex]);
+  }
+  double[] liftArray = new double[]{12.0, 19, 34.0, 50.0, 60.0, 80.0, 88.0};
+
 
   @Override
   public void initDefaultCommand() {
