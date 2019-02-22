@@ -19,6 +19,7 @@ import frc.robot.commands.Halodrive;
  */
 public class Drivetrain extends Subsystem {
 
+// Drivetrain Motors---------------------------  
   Victor dtmotorFrontRight = new Victor(RobotMap.dtmotorFrontRight);
   Victor dtmotorRearRight = new Victor(RobotMap.dtmotorRearRight);
   SpeedControllerGroup rightMotors = new SpeedControllerGroup(dtmotorFrontRight, dtmotorRearRight);

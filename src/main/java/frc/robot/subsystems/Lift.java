@@ -10,31 +10,34 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.PIDController;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
-import frc.robot.commands.LowestLift;
-import frc.robot.commands.SyncSlave;
 
 
 public class Lift extends Subsystem{
 
+// Lift Motors---------------------------------  
   Victor liftmotorLeft = new Victor(RobotMap.liftmotorLeft);
   Victor liftmotorRight = new Victor(RobotMap.liftmotorRight);
 
+// Lift Potentiometers-------------------------
   AnalogPotentiometer liftPotentiometerLeft = new AnalogPotentiometer(RobotMap.liftPotentiometerLeft, 116.5);
   AnalogPotentiometer liftPotentiometerRight = new AnalogPotentiometer(RobotMap.liftPotentiometerRight, 116.5, 3.25);
 
+// PID Loops-----------------------------------  
   PIDController pidLoopLeft = new PIDController(1, 0, 0, liftPotentiometerLeft, this::speedSetterLeft);
   PIDController pidLoopRight = new PIDController(1, 0, 0, liftPotentiometerRight, this::speedSetterRight, 0.02);
 
+// Array Variable------------------------------  
   int lastIndex = 0;
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   public Lift() {
+
+// Creating Live Windows For SmartDashBoard---    
     LiveWindow.addActuator("LiftMaster", "motor", liftmotorLeft);
     LiveWindow.addSensor("LiftMaster", "pot", liftPotentiometerLeft);
     LiveWindow.addActuator("LiftMaster", "PID Controller", pidLoopLeft);
@@ -42,47 +45,19 @@ public class Lift extends Subsystem{
     LiveWindow.addSensor("LiftSlave", "pot", liftPotentiometerRight);
     LiveWindow.addActuator("LiftSlave", "PID Controller", pidLoopRight);
 
-    pidLoopLeft.setSetpoint(liftPotentiometerLeft.get());
-    pidLoopRight.setSetpoint(liftPotentiometerLeft.get());
+// Enabling PID Loops--------------------------
     pidLoopLeft.enable();
     pidLoopRight.enable();
   }
 
-  // public void raiseLift(){
-  //   pidLoopLeft.setSetpoint(pidLoopLeft.getSetpoint() + 2);
-  // }
-
-  // public void lowerLift(){
-  //   pidLoopLeft.setSetpoint(pidLoopLeft.getSetpoint() - 2);
-  // }
-
-  public void lowestLift(){
-    pidLoopLeft.setSetpoint(RobotMap.lowestSetPoint);
-    syncSlave();
-
-  }
-
-  public void midLiftOne(){
-    pidLoopLeft.setSetpoint(RobotMap.midSetPointOne);
-    syncSlave();
-  }
-
-  public void midLiftTwo(){
-    pidLoopLeft.setSetpoint(RobotMap.midSetPointTwo);
-    syncSlave();
-  }
-
-  public void highestLift(){
-    pidLoopLeft.setSetpoint(RobotMap.highestSetPoint);
-    syncSlave();
-  }
-
+//Setting the Slave's Set Point----------------
   public void syncSlave(){
     pidLoopRight.setSetpoint(liftPotentiometerLeft.get());
   }
 
+//Creating SmartDashBoard Windows--------------  
   public double setSmartDashboardLeft(){
-   return liftPotentiometerLeft.get();
+    return liftPotentiometerLeft.get();
   }
   public double setSmartDashboardRight(){
     return liftPotentiometerRight.get();
@@ -97,7 +72,7 @@ public class Lift extends Subsystem{
   }
 
   
-
+// Setting the Max Speed of Lift Motors--------
   public void stop(){
     liftmotorLeft.set(0.0);
     liftmotorRight.set(0.0);
@@ -116,9 +91,8 @@ public class Lift extends Subsystem{
         liftmotorLeft.set(output);
       }
     }
-   }
+  }
   
-
   private void speedSetterRight(double output){
     if (output > 0.6) {
       liftmotorRight.set(0.6);
@@ -135,8 +109,9 @@ public class Lift extends Subsystem{
     syncSlave();
   }
 
+// Setting the Lift Array Limits---------------  
   public int incramentIndex(){
-    if (lastIndex < liftArray.length - 1) {
+    if (lastIndex < RobotMap.liftArray.length - 1) {
       lastIndex++;
     }
     return lastIndex;
@@ -149,11 +124,13 @@ public class Lift extends Subsystem{
     return lastIndex;
   }
 
+// Setting the Last Index For the PID Loop-----  
   public void setPidLoop(){
-    pidLoopLeft.setSetpoint(liftArray[lastIndex]);
-  }
-  double[] liftArray = new double[]{12.0, 19, 34.0, 50.0, 60.0, 80.0, 88.0};
+    pidLoopLeft.setSetpoint(RobotMap.liftArray[lastIndex]);
+  } 
 
+
+ 
 
   @Override
   public void initDefaultCommand() {

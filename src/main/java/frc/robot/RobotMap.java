@@ -16,38 +16,34 @@ package frc.robot;
  */
 public class RobotMap {
   
-  // Controller and Buttons--------------------
+// Controller and Buttons--------------------
   public static int xboxcontroller = 0;
-  // public static int lowestLiftButton = 1;
-  // public static int midLiftOneButton = 2;
-  // public static int midLiftTwoButton = 3;
-  // public static int highestLiftButton = 4;
   public static int clawCloseButton = 5;
   public static int clawOpenButton = 6;
   public static int incramentIndexButton = 1;
   public static int decramentIndexButton = 2;
 
-  // Drivetrain Motors-------------------------
+// Drivetrain Motors-------------------------
   public static int dtmotorFrontRight = 0;
   public static int dtmotorRearRight = 1;
   public static int dtmotorFrontLeft = 2;
   public static int dtmotorRearLeft = 3;
 
-  // Lift Motors-------------------------------
+// Lift Motors-------------------------------
   public static int liftmotorLeft = 4;
   public static int liftmotorRight = 5;
 
-  // Wrist Motor-------------------------------
+// Wrist Motor-------------------------------
   public static int wristMotor = 6;
 
-  // Wrist Counter-----------------------------
+// Wrist Counter-----------------------------
   public static int wristCounter = 0;
 
-  // Lift Potentiometers-----------------------
+// Lift Potentiometers-----------------------
   public static int liftPotentiometerLeft = 0;
   public static int liftPotentiometerRight = 1;
 
-  // Variables for Lift Commands---------------
+// Variables for Lift Commands---------------
   public static double lowestSetPoint = 12.0;
   public static double midSetPointOne = 34.0;
   public static double midSetPointTwo = 60.0;
@@ -55,8 +51,12 @@ public class RobotMap {
   public static double masterTolerance = 0.50; // Tolerance in "inches"
   public static double slaveTolerance = 0.10; // Tolerance in "inches"
 
-  // Servo Motor
+// Servo Motor
   public static int clawServo = 7;
+  
+// Lift Array
+  public static double[] liftArray = new double[]{12.0, 19, 34.0, 50.0, 60.0, 80.0, 88.0};
+
 
 
 
