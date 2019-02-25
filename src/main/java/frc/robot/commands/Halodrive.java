@@ -31,6 +31,7 @@ public class Halodrive extends Command {
     SmartDashboard.putNumber("RightPot", Robot.lift.setSmartDashboardRight());
     Robot.lift.smartDashboardOutput();
     Robot.lift.smartDashBoardOutputRight();
+    Robot.drivetrain.fixVeer();
 
 
   }

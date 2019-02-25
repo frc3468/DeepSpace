@@ -30,6 +30,8 @@ public class Drivetrain extends Subsystem {
 
   DifferentialDrive RobotDrive = new DifferentialDrive(leftMotors, rightMotors);
 
+  
+
 
   public void Halodrive(double magnitude, double rotation) {
     magnitude = map(magnitude, -1.0, 1.0, -0.5, 0.5);
@@ -38,6 +40,15 @@ public class Drivetrain extends Subsystem {
     RobotDrive.arcadeDrive(magnitude, rotation);
 
 
+
+  }
+
+  public void fixVeer(){
+    if (leftMotors.get() < 0.0) {
+      leftMotors.set(leftMotors.get() - 0.1);
+    } else if (leftMotors.get() > 0.0) {
+      leftMotors.set(leftMotors.get() + 0.1);
+    }
   }
 
   // Put methods for controlling this subsystem
