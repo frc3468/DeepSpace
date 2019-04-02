@@ -8,12 +8,11 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 
-public class Halodrive extends Command {
-  public Halodrive() {
-    requires(Robot.drivetrain); 
+public class IncramentSetPoint extends Command {
+  public IncramentSetPoint() {
+    requires(Robot.lift);
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -21,39 +20,28 @@ public class Halodrive extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    Robot.lift.incramentSetPoint();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.drivetrain.Halodrive(Robot.m_oi.stick.getRawAxis(1), Robot.m_oi.stick.getRawAxis(4));
-    SmartDashboard.putNumber("ClawServo", Robot.claw.smartDashboardClaw());
-    SmartDashboard.putNumber("LeftPot", Robot.lift.setSmartDashboardLeft());
-    SmartDashboard.putNumber("RightPot", Robot.lift.setSmartDashboardRight());
-    Robot.lift.smartDashboardOutput();
-    Robot.lift.smartDashBoardOutputRight();
-    Robot.drivetrain.fixVeer();
-
-
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return true;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    interrupted();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.drivetrain.Halodrive(0, 0);
-    
   }
 }

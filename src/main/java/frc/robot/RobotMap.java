@@ -22,6 +22,8 @@ public class RobotMap {
   public static int clawOpenButton = 6;
   public static int incramentIndexButton = 1;
   public static int decramentIndexButton = 2;
+  public static int incramentSetPointButton = 3;
+  public static int decramentSetPointButton = 4;
 
 // Drivetrain Motors-------------------------
   public static int dtmotorFrontRight = 0;
@@ -55,7 +57,7 @@ public class RobotMap {
   public static int clawServo = 7;
   
 // Lift Array
-  public static double[] liftArray = new double[]{12.0, 19, 34.0, 50.0, 60.0, 80.0, 88.0};
+  public static double[] liftArray = new double[]{19.0, 34.0, 50.0, 60.0, 80.0, 88.0};
 
 
 

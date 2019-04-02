@@ -47,7 +47,7 @@ public class Wrist extends PIDSubsystem {
   }
 
   public void stop() {
-    wristMotor.set(0.0);
+    wristMotor.set(-0.05);
   }
 
   @Override

@@ -13,6 +13,8 @@ import frc.robot.commands.ClawClose;
 import frc.robot.commands.ClawOpen;
 import frc.robot.commands.DecramentIndex;
 import frc.robot.commands.IncramentIndex;
+import frc.robot.commands.IncramentSetPoint;
+import frc.robot.commands.decramentSetPoint;
 
 
 /**
@@ -27,6 +29,8 @@ public class OI {
   public Button leftBumper = new JoystickButton(stick, RobotMap.clawCloseButton);
   public Button aButton = new JoystickButton(stick, RobotMap.incramentIndexButton);
   public Button bButton = new JoystickButton(stick, RobotMap.decramentIndexButton);
+  public Button xButton = new JoystickButton(stick, RobotMap.incramentSetPointButton);
+  public Button yButton = new JoystickButton(stick, RobotMap.decramentSetPointButton);
 
   public OI() {
 
@@ -35,6 +39,8 @@ public class OI {
     aButton.whenPressed(new IncramentIndex());
     rightBumper.whenPressed(new ClawOpen());
     leftBumper.whenPressed(new ClawClose());
+    xButton.whenPressed(new IncramentSetPoint());
+    yButton.whenPressed(new decramentSetPoint());
   }
 
   //// CREATING BUTTONS

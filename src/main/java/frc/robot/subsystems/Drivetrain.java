@@ -34,8 +34,8 @@ public class Drivetrain extends Subsystem {
 
 
   public void Halodrive(double magnitude, double rotation) {
-    magnitude = map(magnitude, -1.0, 1.0, -0.5, 0.5);
-    rotation = map(rotation, -1.0, 1.0, -0.5, 0.5);
+    magnitude = map(magnitude, -1.0, 1.0, -0.7, 0.7);
+    rotation = map(rotation, -1.0, 1.0, -0.6, 0.6);
     
     RobotDrive.arcadeDrive(magnitude, rotation);
 
@@ -45,9 +45,9 @@ public class Drivetrain extends Subsystem {
 
   public void fixVeer(){
     if (leftMotors.get() < 0.0) {
-      leftMotors.set(leftMotors.get() - 0.1);
+      leftMotors.set(leftMotors.get() - 0.05);
     } else if (leftMotors.get() > 0.0) {
-      leftMotors.set(leftMotors.get() + 0.1);
+      leftMotors.set(leftMotors.get() + 0.05);
     }
   }
 

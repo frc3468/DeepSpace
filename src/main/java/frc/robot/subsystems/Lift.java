@@ -25,7 +25,7 @@ public class Lift extends Subsystem{
 
 // Lift Potentiometers-------------------------
   AnalogPotentiometer liftPotentiometerLeft = new AnalogPotentiometer(RobotMap.liftPotentiometerLeft, 116.5);
-  AnalogPotentiometer liftPotentiometerRight = new AnalogPotentiometer(RobotMap.liftPotentiometerRight, 116.5, 3.25);
+  AnalogPotentiometer liftPotentiometerRight = new AnalogPotentiometer(RobotMap.liftPotentiometerRight, 116.5, 4.1);
 
 // PID Loops-----------------------------------  
   PIDController pidLoopLeft = new PIDController(1, 0, 0, liftPotentiometerLeft, this::speedSetterLeft);
@@ -45,9 +45,12 @@ public class Lift extends Subsystem{
     LiveWindow.addSensor("LiftSlave", "pot", liftPotentiometerRight);
     LiveWindow.addActuator("LiftSlave", "PID Controller", pidLoopRight);
 
+    pidLoopLeft.setSetpoint(liftPotentiometerLeft.get());
+
 // Enabling PID Loops--------------------------
     pidLoopLeft.enable();
     pidLoopRight.enable();
+    
   }
 
 //Setting the Slave's Set Point----------------
@@ -124,10 +127,30 @@ public class Lift extends Subsystem{
     return lastIndex;
   }
 
+  public void incramentSetPoint(){
+    pidLoopLeft.setSetpoint(pidLoopLeft.getSetpoint() + 1);
+    if (pidLoopLeft.getSetpoint() >= RobotMap.liftArray[lastIndex + 1]) {
+      if (lastIndex < RobotMap.liftArray.length - 1) {
+        lastIndex++;
+      }
+    }
+  }
+
+  public void decramentSetPoint(){
+    pidLoopLeft.setSetpoint(pidLoopLeft.getSetpoint() - 4);
+    if (pidLoopLeft.getSetpoint() <= RobotMap.liftArray[lastIndex - 1]) {
+      if (lastIndex > 0) {
+        lastIndex--;
+      }
+    }
+  }
+
 // Setting the Last Index For the PID Loop-----  
   public void setPidLoop(){
     pidLoopLeft.setSetpoint(RobotMap.liftArray[lastIndex]);
   } 
+
+
 
 
  

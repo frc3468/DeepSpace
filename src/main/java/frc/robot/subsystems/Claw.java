@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Servo;
+import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
@@ -24,12 +25,16 @@ public class Claw extends Subsystem {
 
 // Claw Commands-------------------------------  
   public void clawServoOpen() {
-    clawServo.set(0.2);
+    clawServo.set(0.3);
     
   }
 
   public void clawServoClose() {
-    clawServo.set(0.8);
+    clawServo.set(0.6);
+  }
+
+  public double smartDashboardClaw(){
+    return clawServo.get();
   }
   
   @Override
