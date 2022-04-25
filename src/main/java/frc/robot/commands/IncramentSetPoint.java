@@ -10,8 +10,8 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class HighestLift extends Command {
-  public HighestLift() {
+public class IncramentSetPoint extends Command {
+  public IncramentSetPoint() {
     requires(Robot.lift);
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -20,13 +20,12 @@ public class HighestLift extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.lift.highestLift();
+    Robot.lift.incramentSetPoint();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-
   }
 
   // Make this return true when this Command no longer needs to run execute()

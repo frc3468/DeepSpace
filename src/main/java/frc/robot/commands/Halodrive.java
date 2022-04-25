@@ -7,7 +7,6 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
@@ -28,10 +27,12 @@ public class Halodrive extends Command {
   @Override
   protected void execute() {
     Robot.drivetrain.Halodrive(Robot.m_oi.stick.getRawAxis(1), Robot.m_oi.stick.getRawAxis(4));
+    SmartDashboard.putNumber("ClawServo", Robot.claw.smartDashboardClaw());
     SmartDashboard.putNumber("LeftPot", Robot.lift.setSmartDashboardLeft());
     SmartDashboard.putNumber("RightPot", Robot.lift.setSmartDashboardRight());
     Robot.lift.smartDashboardOutput();
     Robot.lift.smartDashBoardOutputRight();
+    Robot.drivetrain.fixVeer();
 
 
   }

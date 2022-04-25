@@ -19,6 +19,7 @@ import frc.robot.commands.Halodrive;
  */
 public class Drivetrain extends Subsystem {
 
+// Drivetrain Motors---------------------------  
   Victor dtmotorFrontRight = new Victor(RobotMap.dtmotorFrontRight);
   Victor dtmotorRearRight = new Victor(RobotMap.dtmotorRearRight);
   SpeedControllerGroup rightMotors = new SpeedControllerGroup(dtmotorFrontRight, dtmotorRearRight);
@@ -29,14 +30,25 @@ public class Drivetrain extends Subsystem {
 
   DifferentialDrive RobotDrive = new DifferentialDrive(leftMotors, rightMotors);
 
+  
+
 
   public void Halodrive(double magnitude, double rotation) {
-    magnitude = map(magnitude, -1.0, 1.0, -0.5, 0.5);
-    rotation = map(rotation, -1.0, 1.0, -0.5, 0.5);
+    magnitude = map(magnitude, -1.0, 1.0, -0.7, 0.7);
+    rotation = map(rotation, -1.0, 1.0, -0.6, 0.6);
     
     RobotDrive.arcadeDrive(magnitude, rotation);
 
 
+
+  }
+
+  public void fixVeer(){
+    if (leftMotors.get() < 0.0) {
+      leftMotors.set(leftMotors.get() - 0.05);
+    } else if (leftMotors.get() > 0.0) {
+      leftMotors.set(leftMotors.get() + 0.05);
+    }
   }
 
   // Put methods for controlling this subsystem

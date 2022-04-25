@@ -7,19 +7,14 @@
 
 package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.ClawClose;
 import frc.robot.commands.ClawOpen;
 import frc.robot.commands.DecramentIndex;
-import frc.robot.commands.HighestLift;
 import frc.robot.commands.IncramentIndex;
-// import frc.robot.commands.LowerLift;
-import frc.robot.commands.LowestLift;
-import frc.robot.commands.MidLiftOne;
-import frc.robot.commands.MidLiftTwo;
-// import frc.robot.commands.RaiseLift;
+import frc.robot.commands.IncramentSetPoint;
+import frc.robot.commands.decramentSetPoint;
 
 
 /**
@@ -28,27 +23,24 @@ import frc.robot.commands.MidLiftTwo;
  */
 public class OI {
 
-  // Controller Mapped
+// Buttons and Controller--------------------
   public Joystick stick = new Joystick(RobotMap.xboxcontroller);
-  // public Button aButton = new JoystickButton(stick,RobotMap.lowestLiftButton);
-  // public Button bButton = new JoystickButton(stick,RobotMap.midLiftOneButton);
-  // public Button xButton = new JoystickButton(stick,RobotMap.midLiftTwoButton);
-  // public Button yButton = new JoystickButton(stick,RobotMap.highestLiftButton);
-  // public Button dPadUp = new JoystickButton(stick,RobotMap.wristUpButton);
-  // public Button dPadLeft = new JoystickButton(stick,RobotMap.wristStraightButton);
-  // public Button dPadDown = new JoystickButton(stick,RobotMap.wristDownButton);
-  public Button rightTrigger = new JoystickButton(stick, RobotMap.clawOpenButton);
-  public Button leftTrigger = new JoystickButton(stick, RobotMap.clawCloseButton);
+  public Button rightBumper = new JoystickButton(stick, RobotMap.clawOpenButton);
+  public Button leftBumper = new JoystickButton(stick, RobotMap.clawCloseButton);
   public Button aButton = new JoystickButton(stick, RobotMap.incramentIndexButton);
   public Button bButton = new JoystickButton(stick, RobotMap.decramentIndexButton);
+  public Button xButton = new JoystickButton(stick, RobotMap.incramentSetPointButton);
+  public Button yButton = new JoystickButton(stick, RobotMap.decramentSetPointButton);
 
   public OI() {
+
+// Button Commands-------------------------
     bButton.whenPressed(new DecramentIndex());
     aButton.whenPressed(new IncramentIndex());
-    // xButton.whenPressed(new MidLiftTwo());
-    // yButton.whenPressed(new HighestLift());
-    rightTrigger.whenPressed(new ClawOpen());
-    leftTrigger.whenPressed(new ClawClose());
+    rightBumper.whenPressed(new ClawOpen());
+    leftBumper.whenPressed(new ClawClose());
+    xButton.whenPressed(new IncramentSetPoint());
+    yButton.whenPressed(new decramentSetPoint());
   }
 
   //// CREATING BUTTONS

@@ -17,8 +17,11 @@ import frc.robot.commands.WristPOV;
  * Add your docs here.
  */
 public class Wrist extends PIDSubsystem {
+
+// Wrist Motor---------------------------------  
   Victor wristMotor = new Victor(RobotMap.wristMotor);
 
+// Wrist Counter-------------------------------  
   Counter wristCounter = new Counter(RobotMap.wristCounter);
 
   /**
@@ -34,6 +37,7 @@ public class Wrist extends PIDSubsystem {
     // enable() - Enables the PID controller.
   }
 
+// Setting Wrist Speeds------------------------  
   public void up() {
     wristMotor.set(-0.6);
   }
@@ -43,7 +47,7 @@ public class Wrist extends PIDSubsystem {
   }
 
   public void stop() {
-    wristMotor.set(0.0);
+    wristMotor.set(-0.05);
   }
 
   @Override
@@ -52,19 +56,6 @@ public class Wrist extends PIDSubsystem {
     // setDefaultCommand(new MySpecialCommand());
     setDefaultCommand(new WristPOV());
   }
-
-  public void wristUp(){
-    setSetpoint(45.0);
-  }
-
-  public void wristStraight(){
-    setSetpoint(90.0);
-  }
-
-  public void wristDown(){
-    setSetpoint(135.0);
-  }
-
 
   @Override
   protected double returnPIDInput() {
